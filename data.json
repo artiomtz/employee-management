@@ -1,0 +1,39 @@
+{
+  "employees": [
+    {
+      "firstName": "Lewis",
+      "lastName": "Burson",
+      "salary": 40700
+    },
+    {
+      "firstName": "Ian",
+      "lastName": "Malcolm",
+      "salary": 70000
+    },
+    {
+      "firstName": "Ellie",
+      "lastName": "Sattler",
+      "salary": 102000
+    },
+    {
+      "firstName": "Dennis",
+      "lastName": "Nedry",
+      "salary": 52000
+    },
+    {
+      "firstName": "John",
+      "lastName": "Hammond",
+      "salary": 89600
+    },
+    {
+      "firstName": "Ray",
+      "lastName": "Arnold",
+      "salary": 45000
+    },
+    {
+      "firstName": "Laura",
+      "lastName": "Burnett",
+      "salary": 80000
+    }
+  ]
+}
