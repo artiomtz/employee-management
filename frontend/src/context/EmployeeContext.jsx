@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { employeeRoute } from "../api/config";
+import { serverRoute, serverRouteEmployees } from "../config/api";
 
 const EmployeeContext = createContext();
 
@@ -9,7 +9,7 @@ export function EmployeeContextProvider({ children }) {
   const fetchEmployeeData = async () => {
     try {
       // console.log("getting employees from the server...");
-      const response = await fetch(`${employeeRoute + "employees"}`);
+      const response = await fetch(`${serverRoute + serverRouteEmployees}`);
       const data = await response.json();
       setEmployees(data.employees);
     } catch (error) {
@@ -22,7 +22,7 @@ export function EmployeeContextProvider({ children }) {
       console.log("updating an employee on the server...");
       try {
         const response = await fetch(
-          `${employeeRoute + "employees/" + employeeDetails.id}`,
+          `${serverRoute + serverRouteEmployees + employeeDetails.id}`,
           {
             method: "PUT",
             body: JSON.stringify(employeeDetails),
@@ -44,7 +44,7 @@ export function EmployeeContextProvider({ children }) {
     } else {
       console.log("saving a new employee on the server...");
       try {
-        const response = await fetch(`${employeeRoute + "employees/"}`, {
+        const response = await fetch(`${serverRoute + serverRouteEmployees}`, {
           method: "POST",
           body: JSON.stringify(employeeDetails),
           headers: {
@@ -68,7 +68,7 @@ export function EmployeeContextProvider({ children }) {
     console.log("deleting an employee on the server...");
     try {
       const response = await fetch(
-        `${employeeRoute + "employees/" + employeeId}`,
+        `${serverRoute + serverRouteEmployees + employeeId}`,
         {
           method: "DELETE",
           headers: {

@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const employeeRouter = require("./routes/employees");
+const clientRoute = require("./config/api");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: clientRoute,
     methods: "GET,HEAD,PUT,POST,DELETE",
     credentials: true,
   })
