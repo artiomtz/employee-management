@@ -11,15 +11,26 @@ export function EmployeeContextProvider({ children }) {
     setEmployees(employeeData.employees);
   };
 
+  const saveEmployeeData = async (employeeId, employeeDetails) => {
+    if (employeeId) {
+      console.log("updating an employee on the server...");
+    } else {
+      console.log("saving a new employee on the server...");
+    }
+  };
+
   return (
-    <EmployeeContext.Provider
-      value={{
-        employees,
-        fetchEmployeeData,
-      }}
-    >
-      {children}
-    </EmployeeContext.Provider>
+    <>
+      <EmployeeContext.Provider
+        value={{
+          employees,
+          fetchEmployeeData,
+          saveEmployeeData,
+        }}
+      >
+        {children}
+      </EmployeeContext.Provider>
+    </>
   );
 }
 

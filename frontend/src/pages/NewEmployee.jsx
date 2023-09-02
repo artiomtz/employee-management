@@ -1,5 +1,11 @@
 import React from "react";
+import Form from "../components/Form";
 
 export default function NewEmployee() {
-  return <div>NewEmployee</div>;
+  return (
+    <>
+      <div>Add New Employee</div>
+      <Form formType="add" />
+    </>
+  );
 }

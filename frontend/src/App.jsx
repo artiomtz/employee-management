@@ -1,20 +1,23 @@
 import { Routes, Route } from "react-router-dom";
+import { EmployeeContextProvider } from "./context/EmployeeContext";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import NewEmployee from "./pages/NewEmployee";
-import EmployeeDetails from "./pages/EmployeeDetails";
+import EditEmployee from "./pages/EditEmployee";
 import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/new" element={<NewEmployee />} />
-        <Route path="/:employeeId" element={<EmployeeDetails />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <EmployeeContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<NewEmployee />} />
+          <Route path="/:employeeId" element={<EditEmployee />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </EmployeeContextProvider>
     </>
   );
 }
