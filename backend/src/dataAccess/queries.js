@@ -1,20 +1,20 @@
 const selectEmployees = `
 SELECT *
-FROM employees;`;
+FROM Employees;`;
 
 const updateEmployee = `
-UPDATE employees
-SET first_name = ?,
-    last_name = ?,
-    salary = ?
+UPDATE Employees
+SET firstName = ?,
+  lastName = ?,
+  salary = ?
 WHERE id = ?;`;
 
 const insertEmployee = `
-INSERT INTO employees (first_name, last_name, salary)
+INSERT INTO Employees (firstName, lastName, salary)
 VALUES (?, ?, ?);`;
 
 const deleteEmployee = `
-DELETE FROM employees
+DELETE FROM Employees
 WHERE id = ?;`;
 
 module.exports = {

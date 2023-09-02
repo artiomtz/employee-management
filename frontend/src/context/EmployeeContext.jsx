@@ -11,7 +11,7 @@ export function EmployeeContextProvider({ children }) {
       // console.log("getting employees from the server...");
       const response = await fetch(`${serverRoute + serverRouteEmployees}`);
       const data = await response.json();
-      setEmployees(data.employees);
+      setEmployees(data.results);
     } catch (error) {
       console.log("Error while loading employees.");
     }
@@ -33,8 +33,13 @@ export function EmployeeContextProvider({ children }) {
         );
         const data = await response.json();
 
-        if (data.result == "ok") {
+        if (data.results == "ok") {
           console.log(`successfully updated employee id=${employeeDetails.id}`);
+          setEmployees((prevEmployees) =>
+            prevEmployees.map((employee) =>
+              employee.id === employeeDetails.id ? employeeDetails : employee
+            )
+          );
         } else {
           console.warn(`couldn't update employee id=${employeeDetails.id}`);
         }
@@ -53,8 +58,10 @@ export function EmployeeContextProvider({ children }) {
         });
         const data = await response.json();
 
-        if (data.result == "ok") {
+        if (data.results == "ok") {
           console.log(`successfully created a new employee with id=${data.id}`);
+          employeeDetails.id = data.id;
+          setEmployees((prevEmployees) => [...prevEmployees, employeeDetails]);
         } else {
           console.warn(`couldn't created a new employee.`);
         }
@@ -78,8 +85,11 @@ export function EmployeeContextProvider({ children }) {
       );
       const data = await response.json();
 
-      if (data.result == "ok") {
+      if (data.results == "ok") {
         console.log(`successfully deleted employee id=${employeeId}`);
+        setEmployees((prevEmployees) =>
+          prevEmployees.filter((employee) => employee.id !== employeeId)
+        );
       } else {
         console.warn(`couldn't deleted employee id=${employeeId}`);
       }

@@ -10,6 +10,8 @@ services:
       MYSQL_USER: "user"
       MYSQL_PASSWORD: "aScaryLongPassword2000!"
       MYSQL_ROOT_PASSWORD: "aScaryLongRootPassword2000!"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
     expose:
