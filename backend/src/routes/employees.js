@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const pool = require("../config/database");
 const employeeData = require("../public/sample_data.json");
+// const {
+//   selectEmployees,
+//   updateEmployee,
+//   insertEmployee,
+//   deleteEmployee,
+// } = require("../dataAccess/queries");
 
 router.get("/", (req, res) => {
   console.log("fetching employees...");
@@ -9,7 +16,19 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   console.log("saving a new employee...");
-  // add new employee
+  const { first_name, last_name, salary } = req.body;
+  // pool.query(
+  //   insertEmployee,
+  //   [first_name, last_name, salary],
+  //   (err, results) => {
+  //     if (err) {
+  //       console.error("Error executing query:", err);
+  //       return;
+  //     }
+  //     console.log("Query results:", results);
+  //   }
+  // );
+
   res.status(200).json({ result: "ok", id: 10 });
 });
 

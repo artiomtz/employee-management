@@ -1,0 +1,16 @@
+version: "1.0"
+
+services:
+  db:
+    image: mysql:latest
+    container_name: employees-management
+    restart: always
+    environment:
+      MYSQL_DATABASE: "employees"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "aScaryLongPassword2000!"
+      MYSQL_ROOT_PASSWORD: "aScaryLongRootPassword2000!"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
