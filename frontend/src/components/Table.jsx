@@ -1,10 +1,10 @@
 import { React, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import EmployeeContext from "../context/EmployeeContext";
+import ButtonEdit from "./ButtonEdit";
+import ButtonDelete from "./ButtonDelete";
 
 export default function Table() {
-  const { employees, fetchEmployeeData, deleteEmployeeData } =
-    useContext(EmployeeContext);
+  const { employees, fetchEmployeeData } = useContext(EmployeeContext);
 
   useEffect(() => {
     fetchEmployeeData();
@@ -28,20 +28,8 @@ export default function Table() {
               <td>{employee.lastName}</td>
               <td>{employee.salary}</td>
               <td>
-                <Link to={"/" + employee.id}>
-                  <button type="button" className="btn btn-primary">
-                    Edit
-                  </button>
-                </Link>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => {
-                    deleteEmployeeData(employee.id);
-                  }}
-                >
-                  Delete
-                </button>
+                <ButtonEdit employeeId={employee.id} />
+                <ButtonDelete employeeId={employee.id} />
               </td>
             </tr>
           ))}

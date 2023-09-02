@@ -1,21 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EmployeeContext from "../context/EmployeeContext";
+import ButtonSave from "./ButtonSave";
 
 export default function Form(props) {
   const { employeeId } = useParams();
-  const { employees, saveEmployeeData, fetchEmployeeData } =
-    useContext(EmployeeContext);
+  const { employees, fetchEmployeeData } = useContext(EmployeeContext);
   const [employeeDetails, setEmployeeDetails] = useState({
     id: null,
     firstName: "",
     lastName: "",
     salary: 0,
   });
-
-  const handleSaveClick = () => {
-    saveEmployeeData(employeeDetails);
-  };
 
   useEffect(() => {
     const selectedEmployee = employees.find(
@@ -88,13 +84,7 @@ export default function Form(props) {
           onChange={handleInputChange}
         />
       </div>
-      <button
-        type="button"
-        className="btn btn-success"
-        onClick={handleSaveClick}
-      >
-        Save
-      </button>
+      <ButtonSave employee={employeeDetails} />
     </>
   );
 }
