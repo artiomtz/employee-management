@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
-  console.log("fetching employees...");
-  res.status(200).json({ msg: "test" });
-});
-
+const employeeRouter = require("./routes/employees");
+app.use("/employees", employeeRouter);
 app.listen(3000);
