@@ -4,25 +4,27 @@ import EmployeeContext from "../context/EmployeeContext";
 
 export default function Form(props) {
   const { employeeId } = useParams();
-  const { employees, saveEmployeeData } = useContext(EmployeeContext);
+  const { employees, saveEmployeeData, fetchEmployeeData } =
+    useContext(EmployeeContext);
   const [employeeDetails, setEmployeeDetails] = useState({
+    id: null,
     firstName: "",
     lastName: "",
     salary: 0,
   });
 
   const handleSaveClick = () => {
-    saveEmployeeData(employeeId, employeeDetails);
+    saveEmployeeData(employeeDetails);
   };
 
   useEffect(() => {
-    console.log(employeeId);
     const selectedEmployee = employees.find(
       (employee) => employee.id === parseInt(employeeId)
     );
 
     if (selectedEmployee) {
       setEmployeeDetails({
+        id: selectedEmployee.id,
         firstName: selectedEmployee.firstName,
         lastName: selectedEmployee.lastName,
         salary: selectedEmployee.salary,
@@ -37,6 +39,10 @@ export default function Form(props) {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    fetchEmployeeData();
+  }, []);
 
   return (
     <>

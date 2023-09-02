@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import { employeeRoute } from "../api/config";
 
 const EmployeeContext = createContext();
 
@@ -6,16 +7,84 @@ export function EmployeeContextProvider({ children }) {
   const [employees, setEmployees] = useState([]);
 
   const fetchEmployeeData = async () => {
-    const employeeData = await import("../../public/sample_data.json");
-    // console.log(employeeData.employees);
-    setEmployees(employeeData.employees);
+    try {
+      // console.log("getting employees from the server...");
+      const response = await fetch(`${employeeRoute + "employees"}`);
+      const data = await response.json();
+      setEmployees(data.employees);
+    } catch (error) {
+      console.log("Error while loading employees.");
+    }
   };
 
-  const saveEmployeeData = async (employeeId, employeeDetails) => {
-    if (employeeId) {
+  const saveEmployeeData = async (employeeDetails) => {
+    if (employeeDetails.id) {
       console.log("updating an employee on the server...");
+      try {
+        const response = await fetch(
+          `${employeeRoute + "employees/" + employeeDetails.id}`,
+          {
+            method: "PUT",
+            body: JSON.stringify(employeeDetails),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          }
+        );
+        const data = await response.json();
+
+        if (data.result == "ok") {
+          console.log(`successfully updated employee id=${employeeDetails.id}`);
+        } else {
+          console.warn(`couldn't update employee id=${employeeDetails.id}`);
+        }
+      } catch (error) {
+        console.log("Error while updating an employee.");
+      }
     } else {
       console.log("saving a new employee on the server...");
+      try {
+        const response = await fetch(`${employeeRoute + "employees/"}`, {
+          method: "POST",
+          body: JSON.stringify(employeeDetails),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        });
+        const data = await response.json();
+
+        if (data.result == "ok") {
+          console.log(`successfully created a new employee with id=${data.id}`);
+        } else {
+          console.warn(`couldn't created a new employee.`);
+        }
+      } catch (error) {
+        console.log("Error while updating an employee.");
+      }
+    }
+  };
+
+  const deleteEmployeeData = async (employeeId) => {
+    console.log("deleting an employee on the server...");
+    try {
+      const response = await fetch(
+        `${employeeRoute + "employees/" + employeeId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+
+      if (data.result == "ok") {
+        console.log(`successfully deleted employee id=${employeeId}`);
+      } else {
+        console.warn(`couldn't deleted employee id=${employeeId}`);
+      }
+    } catch (error) {
+      console.log("Error while updating an employee.");
     }
   };
 
@@ -26,6 +95,7 @@ export function EmployeeContextProvider({ children }) {
           employees,
           fetchEmployeeData,
           saveEmployeeData,
+          deleteEmployeeData,
         }}
       >
         {children}

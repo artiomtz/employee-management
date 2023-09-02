@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import EmployeeContext from "../context/EmployeeContext";
 
 export default function Table() {
-  const { employees, fetchEmployeeData } = useContext(EmployeeContext);
+  const { employees, fetchEmployeeData, deleteEmployeeData } =
+    useContext(EmployeeContext);
 
   useEffect(() => {
     fetchEmployeeData();
@@ -32,7 +33,13 @@ export default function Table() {
                     Edit
                   </button>
                 </Link>
-                <button type="button" className="btn btn-danger">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    deleteEmployeeData(employee.id);
+                  }}
+                >
                   Delete
                 </button>
               </td>

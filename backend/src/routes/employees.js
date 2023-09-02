@@ -10,13 +10,20 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   console.log("saving a new employee...");
   // add new employee
-  res.status(200).json({ result: "ok" });
+  res.status(200).json({ result: "ok", id: 10 });
 });
 
 router.put("/:id", (req, res) => {
   const employeeId = req.params.id;
   console.log(`updating employee id=${employeeId}...`);
   // update an employee
+  res.status(200).json({ result: "ok" });
+});
+
+router.delete("/:id", (req, res) => {
+  const employeeId = req.params.id;
+  console.log(`deleting employee id=${employeeId}...`);
+  // delete an employee
   res.status(200).json({ result: "ok" });
 });
 
