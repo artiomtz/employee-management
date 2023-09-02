@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import EmployeeContext from "../context/EmployeeContext";
+import { BiSave } from "react-icons/bi";
 
 export default function ButtonSave(props) {
   const { saveEmployeeData } = useContext(EmployeeContext);
@@ -15,6 +16,9 @@ export default function ButtonSave(props) {
         className="btn btn-success"
         onClick={handleSaveClick}
       >
+        <span>
+          <BiSave />
+        </span>
         Save
       </button>
     </>
