@@ -6,8 +6,8 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar bg-body-tertiary" data-bs-theme="dark">
-        <div class="container-fluid">
-          <Link to="/" class="navbar-brand">
+        <div className="container-fluid">
+          <Link to="/" className="navbar-brand">
             <button type="button" className="btn btn-secondary">
               <span className="icon-gap">
                 <BiHomeAlt2 />

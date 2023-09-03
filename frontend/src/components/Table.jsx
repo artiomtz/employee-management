@@ -43,7 +43,7 @@ export default function Table() {
             <tr key={employee.id} className="align-middle">
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
-              <td>{formatCurrency(employee.salary)}</td> {/* Format salary */}
+              <td>{formatCurrency(employee.salary)}</td>
               <td>
                 <ButtonEdit employeeId={employee.id} />
                 <ButtonDelete employeeId={employee.id} />
