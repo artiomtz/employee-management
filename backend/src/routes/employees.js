@@ -8,6 +8,7 @@ const {
   deleteEmployee,
 } = require("../dataAccess/queries");
 
+// get all employees
 router.get("/", (req, res) => {
   console.log("fetching employees...");
   pool.query(selectEmployees, (err, results) => {
@@ -21,6 +22,7 @@ router.get("/", (req, res) => {
   });
 });
 
+// create an employee
 router.post("/", (req, res) => {
   console.log("saving a new employee...");
   const { firstName, lastName, salary } = req.body;
@@ -35,6 +37,7 @@ router.post("/", (req, res) => {
   });
 });
 
+// update an employee by id
 router.put("/:id", (req, res) => {
   const employeeId = req.params.id;
   console.log(`updating employee id=${employeeId}...`);
@@ -54,6 +57,7 @@ router.put("/:id", (req, res) => {
   );
 });
 
+// delete and employee by id
 router.delete("/:id", (req, res) => {
   const employeeId = req.params.id;
   console.log(`deleting employee id=${employeeId}...`);

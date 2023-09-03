@@ -7,6 +7,7 @@ const EmployeeContext = createContext();
 export function EmployeeContextProvider({ children }) {
   const [employees, setEmployees] = useState([]);
 
+  // get all employees
   const fetchEmployeeData = async () => {
     try {
       // console.log("getting employees from the server...");
@@ -18,7 +19,9 @@ export function EmployeeContextProvider({ children }) {
     }
   };
 
+  // create or update employee
   const saveEmployeeData = async (employeeDetails) => {
+    // update employee by id
     if (employeeDetails.id) {
       console.log("updating an employee on the server...");
       try {
@@ -50,7 +53,9 @@ export function EmployeeContextProvider({ children }) {
         console.log("Error while updating an employee.");
         toast.error("Something went wrong...");
       }
-    } else {
+    }
+    // create employee
+    else {
       console.log("saving a new employee on the server...");
       try {
         const response = await fetch(`${serverRoute + serverRouteEmployees}`, {
@@ -78,6 +83,7 @@ export function EmployeeContextProvider({ children }) {
     }
   };
 
+  // delete employee by id
   const deleteEmployeeData = async (employeeId) => {
     console.log("deleting an employee on the server...");
     try {

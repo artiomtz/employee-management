@@ -14,6 +14,7 @@ export default function Form(props) {
     salary: "",
   });
 
+  // get employee by id if exists
   useEffect(() => {
     const selectedEmployee = employees.find(
       (employee) => employee.id === parseInt(employeeId)
@@ -29,6 +30,7 @@ export default function Form(props) {
     }
   }, [employees, employeeId]);
 
+  // handle form input field changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEmployeeDetails({
@@ -37,6 +39,7 @@ export default function Form(props) {
     });
   };
 
+  // verify form inputs are valid
   const validateForm = () => {
     const isFirstNameValid = /^[a-zA-Z]{1,20}$/.test(employeeDetails.firstName);
     const isLastNameValid = /^[a-zA-Z]{1,20}$/.test(employeeDetails.lastName);
@@ -60,6 +63,7 @@ export default function Form(props) {
             </label>
             <input
               type="text"
+              // add pattern attribute for letters only, 1-20 characters
               className={`form-control ${
                 !/^[A-Za-z]{1,20}$/.test(employeeDetails.firstName) &&
                 "is-invalid"
@@ -83,6 +87,7 @@ export default function Form(props) {
             </label>
             <input
               type="text"
+              // add pattern attribute for letters only, 1-20 characters
               className={`form-control ${
                 !/^[A-Za-z]{1,20}$/.test(employeeDetails.lastName) &&
                 "is-invalid"
@@ -106,6 +111,7 @@ export default function Form(props) {
             </label>
             <input
               type="number"
+              // add pattern attribute for numbers only, range 1-999,999
               className={`form-control ${
                 !(
                   /^[1-9]\d*$/.test(employeeDetails.salary) &&

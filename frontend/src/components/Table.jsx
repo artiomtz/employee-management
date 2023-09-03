@@ -6,6 +6,7 @@ import ButtonDelete from "./ButtonDelete";
 export default function Table() {
   const { employees, fetchEmployeeData } = useContext(EmployeeContext);
 
+  // set salary currency format
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
