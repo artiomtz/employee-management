@@ -1,5 +1,6 @@
 import React, { useState, createContext } from "react";
 import { serverRoute, serverRouteEmployees } from "../config/api";
+import { toast } from "react-toastify";
 
 const EmployeeContext = createContext();
 
@@ -40,11 +41,14 @@ export function EmployeeContextProvider({ children }) {
               employee.id === employeeDetails.id ? employeeDetails : employee
             )
           );
+          toast.success("Successfully updated.");
         } else {
           console.warn(`couldn't update employee id=${employeeDetails.id}`);
+          toast.error("Something went wrong...");
         }
       } catch (error) {
         console.log("Error while updating an employee.");
+        toast.error("Something went wrong...");
       }
     } else {
       console.log("saving a new employee on the server...");
@@ -62,11 +66,14 @@ export function EmployeeContextProvider({ children }) {
           console.log(`successfully created a new employee with id=${data.id}`);
           employeeDetails.id = data.id;
           setEmployees((prevEmployees) => [...prevEmployees, employeeDetails]);
+          toast.success("Successfully created.");
         } else {
           console.warn(`couldn't created a new employee.`);
+          toast.error("Something went wrong...");
         }
       } catch (error) {
         console.log("Error while updating an employee.");
+        toast.error("Something went wrong...");
       }
     }
   };
@@ -90,11 +97,14 @@ export function EmployeeContextProvider({ children }) {
         setEmployees((prevEmployees) =>
           prevEmployees.filter((employee) => employee.id !== employeeId)
         );
+        toast.success("Successfully deleted.");
       } else {
         console.warn(`couldn't deleted employee id=${employeeId}`);
+        toast.error("Something went wrong...");
       }
     } catch (error) {
       console.log("Error while updating an employee.");
+      toast.error("Something went wrong...");
     }
   };
 

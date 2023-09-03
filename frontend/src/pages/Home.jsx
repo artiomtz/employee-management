@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonAdd from "../components/ButtonAdd";
 import Table from "../components/Table";
+import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

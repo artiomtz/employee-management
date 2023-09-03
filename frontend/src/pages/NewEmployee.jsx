@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "../components/Form";
+import { ToastContainer } from "react-toastify";
 
 export default function NewEmployee() {
   return (
@@ -12,6 +13,7 @@ export default function NewEmployee() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
