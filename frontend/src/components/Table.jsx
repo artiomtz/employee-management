@@ -1,10 +1,19 @@
-import { React, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import EmployeeContext from "../context/EmployeeContext";
 import ButtonEdit from "./ButtonEdit";
 import ButtonDelete from "./ButtonDelete";
 
 export default function Table() {
   const { employees, fetchEmployeeData } = useContext(EmployeeContext);
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
 
   useEffect(() => {
     fetchEmployeeData();
@@ -34,7 +43,7 @@ export default function Table() {
             <tr key={employee.id} className="align-middle">
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
-              <td>{employee.salary}</td>
+              <td>{formatCurrency(employee.salary)}</td> {/* Format salary */}
               <td>
                 <ButtonEdit employeeId={employee.id} />
                 <ButtonDelete employeeId={employee.id} />
