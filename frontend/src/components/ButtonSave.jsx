@@ -15,6 +15,7 @@ export default function ButtonSave(props) {
         type="button"
         className="btn btn-success"
         onClick={handleSaveClick}
+        disabled={!props.isFormValid}
       >
         <span>
           <BiSave />
