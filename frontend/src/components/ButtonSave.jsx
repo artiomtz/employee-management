@@ -13,11 +13,11 @@ export default function ButtonSave(props) {
     <>
       <button
         type="button"
-        className="btn btn-success"
+        className="btn btn-success ms-0"
         onClick={handleSaveClick}
         disabled={!props.isFormValid}
       >
-        <span>
+        <span className="icon-gap">
           <BiSave />
         </span>
         Save

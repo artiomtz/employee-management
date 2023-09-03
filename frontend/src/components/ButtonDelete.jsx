@@ -14,7 +14,7 @@ export default function ButtonDelete(props) {
           deleteEmployeeData(props.employeeId);
         }}
       >
-        <span>
+        <span className="icon-gap">
           <BiTrash />
         </span>
         Delete

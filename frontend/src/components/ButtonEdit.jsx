@@ -7,7 +7,7 @@ export default function ButtonEdit(props) {
     <>
       <Link to={"/" + props.employeeId}>
         <button type="button" className="btn btn-primary">
-          <span>
+          <span className="icon-gap">
             <BiEdit />
           </span>
           Edit

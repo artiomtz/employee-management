@@ -7,7 +7,7 @@ export default function ButtonAdd() {
     <>
       <Link to={"/new"}>
         <button type="button" className="btn btn-success">
-          <span>
+          <span className="icon-gap">
             <BiPlus />
           </span>
           Add

@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import NewEmployee from "./pages/NewEmployee";
 import EditEmployee from "./pages/EditEmployee";
 import NotFound from "./pages/NotFound";
+import "./App.css";
 
 function App() {
   return (
